@@ -64,38 +64,27 @@ export default function PaymentLandingPage() {
           <div className="flex items-center gap-2">
             <Link href="#" className="flex items-center gap-2 font-semibold">
               <CreditCard className="h-6 w-6" />
-              <span>PaymentPro</span>
+              <span>ShortPDF</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              href="#pricing"
+              href="/"
               className="text-sm font-medium hover:underline underline-offset-4"
             >
-              Pricing
+              Home
             </Link>
             <Link
-              href="#gallery"
+              href="/privacy-policy"
               className="text-sm font-medium hover:underline underline-offset-4"
             >
-              Gallery
+              Privacy Policy
             </Link>
+
             <Link
-              href="#payment"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              Payment
-            </Link>
-            <Link
-              href="#faq"
-              className="text-sm font-medium hover:underline underline-offset-4"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="#contact"
+              href="/contact-us"
               className="text-sm font-medium hover:underline underline-offset-4"
             >
               Contact
@@ -103,7 +92,9 @@ export default function PaymentLandingPage() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
             <Link
               href="#payment"
               className="hidden md:inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
@@ -130,65 +121,41 @@ export default function PaymentLandingPage() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="fixed inset-0 top-16 z-50 bg-background p-6 md:hidden dark:bg-gray-900">
-            <nav className="flex flex-col gap-6">
-              <Link
-                href="#features"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Features
-              </Link>
-              <Link
-                href="#video"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Video
-              </Link>
-              <Link
-                href="#pricing"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Pricing
-              </Link>
-              <Link
-                href="#gallery"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Gallery
-              </Link>
-              <Link
-                href="#payment"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Payment
-              </Link>
-              <Link
-                href="#faq"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                FAQ
-              </Link>
-              <Link
-                href="#contact"
-                className="text-lg font-medium hover:text-primary"
-                onClick={toggleMobileMenu}
-              >
-                Contact
-              </Link>
-              <Link
-                href="#payment"
-                className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                onClick={toggleMobileMenu}
-              >
-                Get Started
-              </Link>
-            </nav>
+          <div className="fixed inset-0 top-16 z-50 bg-black text-black md:hidden">
+            <div className="container p-6 bg-white">
+              <nav className="flex flex-col gap-6">
+                <Link
+                  href="#features"
+                  className="text-lg font-medium text-black hover:text-primary"
+                  onClick={toggleMobileMenu}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/privacy-policy"
+                  className="text-lg font-medium text-black hover:text-primary"
+                  onClick={toggleMobileMenu}
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/contact-us"
+                  className="text-lg font-medium text-black hover:text-primary"
+                  onClick={toggleMobileMenu}
+                >
+                  Contact
+                </Link>
+                <div className="flex justify-center">
+                  <Link
+                    href="/privacy-policy"
+                    className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    onClick={toggleMobileMenu}
+                  >
+                    Buy now
+                  </Link>
+                </div>
+              </nav>
+            </div>
           </div>
         )}
       </header>
@@ -237,7 +204,7 @@ export default function PaymentLandingPage() {
                 </ul>
                 <div className="pt-4">
                   <Link
-                    href="#payment"
+                    href="/privacy-policy"
                     className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 sm:px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                   >
                     Buy Now
@@ -250,14 +217,16 @@ export default function PaymentLandingPage() {
                     ref={videoRef}
                     className="w-full h-full object-cover cursor-pointer rounded-lg"
                     controls
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     poster="/placeholder.svg?height=720&width=1280"
                     src="/video.mp4"
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (videoRef.current?.paused) {
-                        videoRef.current?.play();
-                      } else {
-                        videoRef.current?.pause();
+                      if (videoRef.current) {
+                        videoRef.current.muted = !videoRef.current.muted;
                       }
                     }}
                   >
@@ -265,37 +234,37 @@ export default function PaymentLandingPage() {
                   </video>
                   <div className="absolute inset-0 flex items-center justify-center">
                     {videoRef.current?.paused && (
-                      <Button
-                        variant="outline"
-                        size="icon"
+                    <Button
+                      variant="outline"
+                      size="icon"
                         className="h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-background/80 text-primary hover:bg-background/90 shadow-lg"
                         onClick={(e) => {
                           e.stopPropagation();
                           videoRef.current?.play();
                         }}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                           className="h-5 w-5 sm:h-6 sm:w-6"
-                        >
-                          <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
-                        <span className="sr-only">Play Video</span>
-                      </Button>
+                      >
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                      </svg>
+                      <span className="sr-only">Play Video</span>
+                    </Button>
                     )}
                   </div>
                   {!videoRef.current?.paused && (
-                    <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-background/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 flex items-center justify-center gap-2 bg-background/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-fit h-fit m-auto">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-7 w-7 sm:h-8 sm:w-8"
+                        className="h-10 w-10 sm:h-12 sm:w-12"
                         onClick={(e) => {
                           e.stopPropagation();
                           if (videoRef.current) {
@@ -336,7 +305,7 @@ export default function PaymentLandingPage() {
               <div className="flex flex-col items-center justify-center space-y-2 mb-8 sm:mb-12">
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter md:text-5xl/tight text-black dark:text-white">Features</h2>
                 <p className="max-w-[900px] text-muted-foreground text-sm sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-300 text-center">Sommaire - Complete AI SaaS Template for AI-Powered PDF Summarization</p>
-              </div>
+  </div>
 
               <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto">
                 <div className="space-y-3 sm:space-y-4">
@@ -362,7 +331,7 @@ export default function PaymentLandingPage() {
                 <div className="space-y-3 sm:space-y-4">
                   <h3 className="text-xl sm:text-2xl font-bold text-black dark:text-white">Complete Stripe Payment System</h3>
                   <p className="dark:text-gray-300 text-sm sm:text-base md:text-lg">✅ Multiple subscription tier implementation <br />✅ Server-side checkout flow <br />✅ Webhook handling for payment events <br />✅ Customer portal integration <br />✅ Subscription management dashboard <br />✅ Usage tracking and limitations</p>
-                </div>
+</div>
 
                 <div className="space-y-3 sm:space-y-4">
                   <h2 className="text-3xl sm:text-4xl font-bold text-black dark:text-white">What You&apos;ll Learn From This Codebase</h2>
@@ -387,7 +356,7 @@ export default function PaymentLandingPage() {
                           >
                             <Image
                               src={`/${index + 1}.png`}
-                              alt={`Gallery image ${index + 1}`}
+                        alt={`Gallery image ${index + 1}`}
                               width={1200}
                               height={800}
                               className="w-full h-auto max-h-[400px] sm:max-h-[500px] md:max-h-[600px] object-contain"
@@ -422,21 +391,21 @@ export default function PaymentLandingPage() {
 
                 <div className="flex items-center gap-1 sm:gap-2">
                   {Array.from({ length: totalSlides }).map((_, index) => (
-                    <Button
-                      key={index}
-                      variant="ghost"
-                      size="sm"
+                        <Button
+                          key={index}
+                          variant="ghost"
+                          size="sm"
                       className={`h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full p-0 ${
                         currentSlide === index
                           ? "bg-neutral-900 dark:bg-white"
                           : "bg-neutral-300 dark:bg-gray-600"
                       }`}
                       onClick={() => setCurrentSlide(index)}
-                    >
-                      <span className="sr-only">
+                        >
+                          <span className="sr-only">
                         Go to slide {index + 1}
-                      </span>
-                    </Button>
+                          </span>
+                        </Button>
                   ))}
                 </div>
 
@@ -453,6 +422,10 @@ export default function PaymentLandingPage() {
             </div>
           </div>
         </section>
+
+        {/* Contact Section */}
+
+
       </main>
       <footer className="border-t bg-primary/5 dark:bg-primary/10">
         <div className="container flex h-16 items-center justify-center px-4 md:px-6">
