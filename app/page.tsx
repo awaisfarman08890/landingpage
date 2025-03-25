@@ -20,6 +20,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Payment from "@/components/payment";
 
 export default function PaymentLandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -99,7 +100,7 @@ export default function PaymentLandingPage() {
               href="#payment"
               className="hidden md:inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             >
-              Get Started
+              Buy Now
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -171,7 +172,7 @@ export default function PaymentLandingPage() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <div className="inline-block rounded-lg bg-primary/10 text-primary px-3 py-1 text-sm">
-                    AI PDF Summarizer
+                    AI PDF Summarizer SAAS Template
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter md:text-4xl/tight dark:text-white">
                     Convert PDFs into clear, concise summaries
@@ -203,13 +204,15 @@ export default function PaymentLandingPage() {
                   </li>
                 </ul>
                 <div className="pt-4">
-                  <Link
-                    href="/privacy-policy"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 sm:px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-                  >
-                    Buy Now
-                  </Link>
+                  
+                  <div className="max-w-6xl mx-auto">
+                    <div>
+                <Payment/>
+                    </div>
                 </div>
+                
+                </div>
+                {/* page method */}
               </div>
               <div className="flex items-center justify-center rounded-lg overflow-hidden bg-muted shadow-lg">
                 <div className="relative w-full aspect-video group">
