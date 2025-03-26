@@ -200,7 +200,7 @@ export default function PaymentLandingPage() {
                   </li>
                   <li className="flex items-center gap-2 text-sm sm:text-base">
                     <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span>Fully Responsive</span>
+                    <span>Fully Responsive All OK</span>
                   </li>
                 </ul>
                 <div className="pt-4">
