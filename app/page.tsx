@@ -213,18 +213,17 @@ export default function PaymentLandingPage() {
                 </div>
                 {/* page method */}
               </div>
-              <div className="flex items-center justify-center rounded-lg overflow-hidden bg-muted shadow-lg">
-                <div className="relative w-full aspect-video group">
+              <div className="flex items-center justify-center rounded-lg overflow-hidden bg-muted shadow-lg min-h-[300px]">
+                <div className="relative w-full aspect-video group bg-gray-200 dark:bg-gray-800">
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-cover cursor-pointer rounded-lg opacity-90"
+                    className="w-full h-full object-cover cursor-pointer rounded-lg"
                     controls={false}
                     autoPlay
                     muted
                     loop
                     playsInline
-                    poster="/placeholder.svg?height=720&width=1280"
-                    src="https://cdn.coverr.co/videos/coverr-typing-on-computer-2401/1080p.mp4"
+                    src="/video.mp4"
                     onClick={(e) => {
                       e.stopPropagation();
                       if (videoRef.current) {
@@ -234,6 +233,7 @@ export default function PaymentLandingPage() {
                   >
                     Your browser does not support the video tag.
                   </video>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10 pointer-events-none"></div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     {videoRef.current?.paused && (
                     <Button
