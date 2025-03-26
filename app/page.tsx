@@ -152,7 +152,7 @@ export default function PaymentLandingPage() {
                     className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     onClick={toggleMobileMenu}
                   >
-                    Buy now
+                   <Payment />
                   </Link>
                 </div>
               </nav>
@@ -205,11 +205,10 @@ export default function PaymentLandingPage() {
                 </ul>
                 <div className="pt-4">
                   
-                  <div className="max-w-6xl mx-auto">
                     <div>
-                <Payment/>
+                    <Payment />
+
                     </div>
-                </div>
                 
                 </div>
                 {/* page method */}
@@ -218,8 +217,8 @@ export default function PaymentLandingPage() {
                 <div className="relative w-full aspect-video group">
                   <video
                     ref={videoRef}
-                    className="w-full h-full object-cover cursor-pointer rounded-lg"
-                    controls
+                    className="w-full h-full object-cover cursor-pointer rounded-lg opacity-90"
+                    controls={false}
                     autoPlay
                     muted
                     loop
