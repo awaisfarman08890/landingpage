@@ -224,7 +224,7 @@ export default function PaymentLandingPage() {
                     loop
                     playsInline
                     poster="/placeholder.svg?height=720&width=1280"
-                    src="/video.mp4"
+                    src="https://cdn.coverr.co/videos/coverr-typing-on-computer-2401/1080p.mp4"
                     onClick={(e) => {
                       e.stopPropagation();
                       if (videoRef.current) {
